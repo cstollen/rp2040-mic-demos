@@ -1,0 +1,17 @@
+Tensorflow Lite Micro
+---------------------
+see:
+https://github.com/tensorflow/tflite-micro/blob/main/tensorflow/lite/micro/docs/new_platform_support.md
+
+# Generate in external directory
+mkdir <tflm-generation-dir>
+cd <tflm-generation-dir>
+# Clone tensorflow lite micro
+git clone --depth 1 https://github.com/tensorflow/tflite-micro
+# Generate project tree with CMSIS-NN library optimization for speech recognition
+cd tflite-micro
+python3 tensorflow/lite/micro/tools/project_generation/create_tflm_tree.py -e micro_speech --rename_cc_to_cpp --makefile_options="TARGET=cortex_m_generic TARGET_ARCH=cortex-m0 OPTIMIZED_KERNEL_DIR=cmsis_nn" ../tflm
+
+# Copy tflm folder into project lib folder
+cp -r tflm <project-dir>/lib
+
